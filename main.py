@@ -1,6 +1,4 @@
-import pygame
-import random
-import pygame_menu
+import pygame, random, pygame_menu, time
 from pygame_menu.examples import create_example_window
 
 pygame.init()
@@ -11,7 +9,9 @@ red = (255, 0, 0)
 green = (0, 255, 0)
 width = 800
 height = 800
+
 screen = pygame.display.set_mode((width, height))
+
 pygame.display.set_caption
 
 point1_pos = [100, 100]
@@ -34,18 +34,21 @@ def reposition_point2():
     point2_pos[1] = random.randint(ball_size1, height - ball_size1)
 
 def start_the_game():
-    point1_pos [0] = 100
-    point1_pos [1] = 100
-    point2_pos [0] = 400
-    point2_pos [1] = 300
+
+    point1_pos[0] = 100
+    point1_pos[1] = 100
+    point2_pos[0] = 400
+    point2_pos[1] = 300
 
     points = 0
+
     font = pygame.font.Font('freesansbold.ttf', 16)
     text = font.render('Points: ' + str(points), True, green, black)
     textRect = text.get_rect()
     textRect.center = (400, 10)
 
     running = True
+
     while running:
         screen.fill((black))
         screen.blit(text, textRect)
@@ -69,13 +72,13 @@ def start_the_game():
         draw_points()
         pygame.display.flip()
 
-        distance = ((point1_pos[0] - point2_pos[0])**2 + (point1_pos[1] - point2_pos[1])**2)**0.5
+        distance = ((point1_pos[0] - point2_pos[0]) ** 2 + (point1_pos[1] - point2_pos[1]) ** 2) ** 0.5
         if distance < 2 * ball_size1:
             reposition_point2()
             points = points + 1
             text = font.render('Points: ' + str(points), True, green, black)
 
-        distance_mouse = ((mouse_pos[0] - point1_pos[0])**2 + (mouse_pos[1] - point1_pos[1])**2)**0.5
+        distance_mouse = ((mouse_pos[0] - point1_pos[0]) ** 2 + (mouse_pos[1] - point1_pos[1]) ** 2) ** 0.5
         if distance_mouse < 2 * mouse_size:
             print('points:', points)
             print('Game Over')
